@@ -19,7 +19,18 @@ func _process(delta: float) -> void:
 		if (i == 0):
 			var direction = (target_position - points[0]).normalized()
 			points[0] += direction * speed * delta
+
+			$Area2D.position = points[0]
 			# points[0] = points[0].lerp(get_local_mouse_position(), speed * delta)
 			# points[0] = get_local_mouse_position()
 		else:
 			points[i] = constraint_distance(points[i], points[i - 1], distance_constraint)
+
+
+func _on_area_2d_area_entered(area: Area2D) -> void:
+	if (area.get_parent() is Bacteria):
+		area.get_parent().eaten()
+		grow()
+
+func grow() -> void:
+	width += 20

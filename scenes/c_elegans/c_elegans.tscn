@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://cvwab61v11icb"]
+[gd_scene load_steps=8 format=3 uid="uid://cvwab61v11icb"]
 
 [ext_resource type="Texture2D" uid="uid://dny2wnsgylmrc" path="res://assets/c_elegans/1.png" id="1_r5akk"]
 [ext_resource type="Script" path="res://scenes/c_elegans/c_elegans.gd" id="1_sfq1i"]
@@ -17,10 +17,18 @@ frame_2/duration = 1.0
 frame_3/texture = ExtResource("4_2l3je")
 frame_3/duration = 1.0
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_2twvm"]
+
 [node name="C_Elegans" type="Line2D"]
-position = Vector2(33, 60)
 points = PackedVector2Array(359, 331)
 width = 50.0
 texture = SubResource("AnimatedTexture_vvkab")
 texture_mode = 2
 script = ExtResource("1_sfq1i")
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("CircleShape2D_2twvm")
+
+[connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]
