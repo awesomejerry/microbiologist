@@ -8,7 +8,6 @@ func constraint_distance(point: Vector2, anchor: Vector2, distance: float) -> Ve
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	width = 20
 	for i in 50:
 		add_point(Vector2.ZERO)
 

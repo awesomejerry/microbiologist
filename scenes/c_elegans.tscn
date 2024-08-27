@@ -1,8 +1,0 @@
-[gd_scene load_steps=2 format=3 uid="uid://cvwab61v11icb"]
-
-[ext_resource type="Script" path="res://scenes/line_2d.gd" id="1_sfq1i"]
-
-[node name="Line2D" type="Line2D"]
-position = Vector2(33, 60)
-points = PackedVector2Array(359, 331)
-script = ExtResource("1_sfq1i")
