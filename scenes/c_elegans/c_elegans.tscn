@@ -20,11 +20,14 @@ frame_3/duration = 1.0
 [sub_resource type="CircleShape2D" id="CircleShape2D_2twvm"]
 
 [node name="C_Elegans" type="Line2D"]
-points = PackedVector2Array(359, 331)
+points = PackedVector2Array(0, 2)
 width = 50.0
 texture = SubResource("AnimatedTexture_vvkab")
 texture_mode = 2
 script = ExtResource("1_sfq1i")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position_smoothing_enabled = true
 
 [node name="Area2D" type="Area2D" parent="."]
 

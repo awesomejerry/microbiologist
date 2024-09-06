@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://d18aufvy44fj4"
-path="res://.godot/imported/4.png-2ac84950a85e12eae350777cf80b744a.ctex"
+uid="uid://bjl3d5bnx08hi"
+path="res://.godot/imported/petri_dish.png-90aedee22cbf51e3d502242765bc3acc.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/bacteria/4.png"
-dest_files=["res://.godot/imported/4.png-2ac84950a85e12eae350777cf80b744a.ctex"]
+source_file="res://assets/petri_dish.png"
+dest_files=["res://.godot/imported/petri_dish.png-90aedee22cbf51e3d502242765bc3acc.ctex"]
 
 [params]
 
