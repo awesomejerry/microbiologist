@@ -1,8 +1,9 @@
-[gd_scene load_steps=4 format=3 uid="uid://x4pm6us3an1h"]
+[gd_scene load_steps=5 format=3 uid="uid://x4pm6us3an1h"]
 
 [ext_resource type="Script" path="res://scenes/Petri_dish/petri_dish.gd" id="1_ntewg"]
 [ext_resource type="PackedScene" uid="uid://cvwab61v11icb" path="res://scenes/c_elegans/c_elegans.tscn" id="2_2prws"]
 [ext_resource type="Texture2D" uid="uid://bjl3d5bnx08hi" path="res://assets/petri_dish.png" id="2_8wge1"]
+[ext_resource type="PackedScene" uid="uid://diqno3cyrqgh" path="res://scenes/bacteria/bacteria_lawn.tscn" id="4_n5a2v"]
 
 [node name="PetriDish" type="Node2D"]
 script = ExtResource("1_ntewg")
@@ -23,3 +24,15 @@ texture = ExtResource("2_8wge1")
 
 [node name="C_Elegans" parent="." instance=ExtResource("2_2prws")]
 points = PackedVector2Array(436, 337)
+
+[node name="BacteriaLawn" parent="." instance=ExtResource("4_n5a2v")]
+position = Vector2(-1958, 2089)
+
+[node name="BacteriaLawn2" parent="." instance=ExtResource("4_n5a2v")]
+position = Vector2(-2144, -1874)
+
+[node name="BacteriaLawn3" parent="." instance=ExtResource("4_n5a2v")]
+position = Vector2(2292, -2077)
+
+[node name="BacteriaLawn4" parent="." instance=ExtResource("4_n5a2v")]
+position = Vector2(1919, 2631)
