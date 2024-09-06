@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://beh588e6oj6gd"]
+
+[ext_resource type="PackedScene" uid="uid://cvwab61v11icb" path="res://scenes/c_elegans/c_elegans.tscn" id="1_ucxf8"]
+
+[node name="C_Elegans" instance=ExtResource("1_ucxf8")]
+
+[node name="SearchTimer" type="Timer" parent="." index="1"]
+one_shot = true

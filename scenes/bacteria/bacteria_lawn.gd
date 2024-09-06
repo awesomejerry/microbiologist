@@ -14,10 +14,12 @@ func _ready() -> void:
 	radius = circle_shape.radius if circle_shape else screen_size.x / 2
 
 	$Timer.connect('timeout', spawn_bacteria)
+	spawn_bacteria()
 
 
 func spawn_bacteria() -> void:
 	var bacteria = bacteria_scene.instantiate()
+	bacteria.add_to_group("Bacteria")
 
 	var random_angle = randf() * 2 * PI
 	var random_radius = sqrt(randf()) * radius
@@ -31,4 +33,3 @@ func spawn_bacteria() -> void:
 
 
 	add_child(bacteria)
-	print('spawn bacteria')

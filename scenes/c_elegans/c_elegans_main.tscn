@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://b5apd6c8ks5oe"]
+
+[ext_resource type="PackedScene" uid="uid://cvwab61v11icb" path="res://scenes/c_elegans/c_elegans.tscn" id="1_kd8u6"]
+
+[node name="C_Elegans_Main" instance=ExtResource("1_kd8u6")]
+
+[node name="Camera2D" type="Camera2D" parent="." index="1"]

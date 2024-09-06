@@ -1,9 +1,10 @@
-[gd_scene load_steps=5 format=3 uid="uid://x4pm6us3an1h"]
+[gd_scene load_steps=6 format=3 uid="uid://x4pm6us3an1h"]
 
 [ext_resource type="Script" path="res://scenes/Petri_dish/petri_dish.gd" id="1_ntewg"]
-[ext_resource type="PackedScene" uid="uid://cvwab61v11icb" path="res://scenes/c_elegans/c_elegans.tscn" id="2_2prws"]
 [ext_resource type="Texture2D" uid="uid://bjl3d5bnx08hi" path="res://assets/petri_dish.png" id="2_8wge1"]
+[ext_resource type="PackedScene" uid="uid://b5apd6c8ks5oe" path="res://scenes/c_elegans/c_elegans_main.tscn" id="3_m0cm7"]
 [ext_resource type="PackedScene" uid="uid://diqno3cyrqgh" path="res://scenes/bacteria/bacteria_lawn.tscn" id="4_n5a2v"]
+[ext_resource type="PackedScene" uid="uid://beh588e6oj6gd" path="res://scenes/c_elegans/c_elegans_npc.tscn" id="5_ipxpp"]
 
 [node name="PetriDish" type="Node2D"]
 script = ExtResource("1_ntewg")
@@ -22,17 +23,29 @@ grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("2_8wge1")
 
-[node name="C_Elegans" parent="." instance=ExtResource("2_2prws")]
-points = PackedVector2Array(436, 337)
-
 [node name="BacteriaLawn" parent="." instance=ExtResource("4_n5a2v")]
-position = Vector2(-1958, 2089)
+position = Vector2(-690, 745)
 
 [node name="BacteriaLawn2" parent="." instance=ExtResource("4_n5a2v")]
-position = Vector2(-2144, -1874)
+position = Vector2(-714, -762)
 
 [node name="BacteriaLawn3" parent="." instance=ExtResource("4_n5a2v")]
-position = Vector2(2292, -2077)
+position = Vector2(731, -816)
 
 [node name="BacteriaLawn4" parent="." instance=ExtResource("4_n5a2v")]
-position = Vector2(1919, 2631)
+position = Vector2(715, 704)
+
+[node name="C_Elegans_Main" parent="." instance=ExtResource("3_m0cm7")]
+points = PackedVector2Array(0, 0)
+
+[node name="C_Elegans" parent="." instance=ExtResource("5_ipxpp")]
+points = PackedVector2Array(-242, 265)
+
+[node name="C_Elegans2" parent="." instance=ExtResource("5_ipxpp")]
+points = PackedVector2Array(280, 279)
+
+[node name="C_Elegans3" parent="." instance=ExtResource("5_ipxpp")]
+points = PackedVector2Array(-217, -249)
+
+[node name="C_Elegans4" parent="." instance=ExtResource("5_ipxpp")]
+points = PackedVector2Array(270, -257)
