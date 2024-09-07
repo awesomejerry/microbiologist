@@ -1,9 +1,14 @@
-[gd_scene load_steps=2 format=3 uid="uid://d2g4nregpau4u"]
+[gd_scene load_steps=4 format=3 uid="uid://d2g4nregpau4u"]
 
 [ext_resource type="PackedScene" uid="uid://b65w0uc2bkgrt" path="res://scenes/onboarding/onboarding.tscn" id="1_e16yn"]
+[ext_resource type="Script" path="res://main.gd" id="1_s44n2"]
+[ext_resource type="PackedScene" uid="uid://xver8npwv8kl" path="res://scenes/circle_transition/circle_transition.tscn" id="2_nwb01"]
 
 [node name="Node2D" type="Node2D"]
+script = ExtResource("1_s44n2")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
 [node name="Onboarding" parent="CanvasLayer" instance=ExtResource("1_e16yn")]
+
+[node name="CircleTransition" parent="CanvasLayer" instance=ExtResource("2_nwb01")]
