@@ -66,6 +66,7 @@ func _process(delta: float) -> void:
 
 			if (is_main):
 				$Camera2D.position = $Area2D.position
+				$Camera2D/Node2D.rotation = atan2(points[1].y - points[0].y, points[1].x - points[0].x)
 		else:
 			points[i] = constraint_distance(points[i], points[i - 1], distance_constraint)
 
