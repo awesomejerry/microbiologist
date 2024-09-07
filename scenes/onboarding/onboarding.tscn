@@ -1,0 +1,47 @@
+[gd_scene load_steps=8 format=3 uid="uid://b65w0uc2bkgrt"]
+
+[ext_resource type="Texture2D" uid="uid://dk3nfh4sig5nf" path="res://assets/onboarding/microbiologist-1.jpg" id="1_6oxw6"]
+[ext_resource type="Script" path="res://scenes/onboarding/onboarding.gd" id="1_27lkg"]
+[ext_resource type="Texture2D" uid="uid://cfjvtvpb1mhtk" path="res://assets/onboarding/microbiologist-2.jpg" id="2_widxy"]
+[ext_resource type="Texture2D" uid="uid://k3lheiwgqhme" path="res://assets/onboarding/microbiologist-3.jpg" id="3_6vuk3"]
+[ext_resource type="Texture2D" uid="uid://b6d0pbehcg8f7" path="res://assets/onboarding/microbiologist-4.jpg" id="4_pvwvy"]
+[ext_resource type="PackedScene" uid="uid://x4pm6us3an1h" path="res://scenes/Petri_dish/Petri_dish.tscn" id="6_egk6c"]
+
+[sub_resource type="AnimatedTexture" id="AnimatedTexture_affyb"]
+frames = 4
+pause = true
+one_shot = true
+frame_0/texture = ExtResource("1_6oxw6")
+frame_1/texture = ExtResource("2_widxy")
+frame_1/duration = 1.0
+frame_2/texture = ExtResource("3_6vuk3")
+frame_2/duration = 1.0
+frame_3/texture = ExtResource("4_pvwvy")
+frame_3/duration = 1.0
+
+[node name="Onboarding" type="TextureRect"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("AnimatedTexture_affyb")
+expand_mode = 2
+script = ExtResource("1_27lkg")
+next_scene = ExtResource("6_egk6c")
+
+[node name="Button" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -46.0
+offset_top = -117.0
+offset_bottom = -86.0
+grow_horizontal = 2
+grow_vertical = 0
+text = "Start"
+
+[connection signal="pressed" from="Button" to="." method="_on_button_pressed"]
