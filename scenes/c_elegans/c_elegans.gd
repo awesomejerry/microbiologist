@@ -12,6 +12,7 @@ func constraint_distance(point: Vector2, anchor: Vector2, distance: float) -> Ve
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	add_to_group("CElegans")
 	for i in 50:
 		add_point(Vector2.ZERO)
 
@@ -66,9 +67,13 @@ func _process(delta: float) -> void:
 
 			if (is_main):
 				$Camera2D.position = $Area2D.position
-				$Camera2D/Node2D.rotation = atan2(points[1].y - points[0].y, points[1].x - points[0].x)
 		else:
 			points[i] = constraint_distance(points[i], points[i - 1], distance_constraint)
+
+	if (is_main):
+		var ride_point_index = 10
+		$Node2D.global_position = points[ride_point_index]
+		$Node2D.rotation = atan2(points[ride_point_index + 1].y - points[ride_point_index].y, points[ride_point_index + 1].x - points[ride_point_index].x)
 
 
 func _on_area_2d_area_entered(area: Area2D) -> void:
@@ -78,3 +83,4 @@ func _on_area_2d_area_entered(area: Area2D) -> void:
 
 func grow() -> void:
 	width += 20
+	distance_constraint += 0.2

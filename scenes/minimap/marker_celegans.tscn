@@ -1,0 +1,24 @@
+[gd_scene load_steps=3 format=3 uid="uid://b01blvvrhvgqn"]
+
+[ext_resource type="Shader" path="res://scenes/minimap/minimap.gdshader" id="1_8muxm"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_uw14s"]
+shader = ExtResource("1_8muxm")
+shader_parameter/circle_size = 0.5
+
+[node name="MarkerCelegans" type="Node2D"]
+
+[node name="ColorRect" type="ColorRect" parent="."]
+material = SubResource("ShaderMaterial_uw14s")
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -4.0
+offset_top = -4.0
+offset_right = 4.0
+offset_bottom = 4.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.346569, 0.346569, 0.346569, 1)

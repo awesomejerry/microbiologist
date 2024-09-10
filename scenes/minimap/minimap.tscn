@@ -1,0 +1,28 @@
+[gd_scene load_steps=4 format=3 uid="uid://cplhtfon0puy4"]
+
+[ext_resource type="Script" path="res://scenes/minimap/minimap.gd" id="1_xtca7"]
+[ext_resource type="Shader" path="res://scenes/minimap/minimap.gdshader" id="2_hep0a"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_bqopb"]
+shader = ExtResource("2_hep0a")
+shader_parameter/circle_size = 0.5
+
+[node name="Minimap" type="Node2D"]
+script = ExtResource("1_xtca7")
+
+[node name="Timer" type="Timer" parent="."]
+autostart = true
+
+[node name="ColorRect" type="ColorRect" parent="."]
+material = SubResource("ShaderMaterial_bqopb")
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -100.0
+offset_top = -100.0
+offset_right = 100.0
+offset_bottom = 100.0
+grow_horizontal = 2
+grow_vertical = 2

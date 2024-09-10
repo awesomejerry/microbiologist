@@ -32,4 +32,4 @@ func spawn_bacteria() -> void:
 	bacteria.global_position = random_position
 
 
-	add_child(bacteria)
+	get_parent().add_child(bacteria)

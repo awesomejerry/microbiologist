@@ -1,16 +1,22 @@
-[gd_scene load_steps=7 format=3 uid="uid://x4pm6us3an1h"]
+[gd_scene load_steps=9 format=3 uid="uid://x4pm6us3an1h"]
 
 [ext_resource type="Script" path="res://scenes/Petri_dish/petri_dish.gd" id="1_ntewg"]
-[ext_resource type="Texture2D" uid="uid://bjl3d5bnx08hi" path="res://assets/petri_dish.png" id="2_8wge1"]
+[ext_resource type="Shader" path="res://scenes/minimap/minimap.gdshader" id="2_nb0xf"]
 [ext_resource type="Texture2D" uid="uid://bcqm5xb7v7wmy" path="res://assets/microscorpy-pixel.png" id="3_1nqe1"]
 [ext_resource type="PackedScene" uid="uid://b5apd6c8ks5oe" path="res://scenes/c_elegans/c_elegans_main.tscn" id="3_m0cm7"]
+[ext_resource type="PackedScene" uid="uid://cplhtfon0puy4" path="res://scenes/minimap/minimap.tscn" id="4_7vcn6"]
 [ext_resource type="PackedScene" uid="uid://diqno3cyrqgh" path="res://scenes/bacteria/bacteria_lawn.tscn" id="4_n5a2v"]
 [ext_resource type="PackedScene" uid="uid://beh588e6oj6gd" path="res://scenes/c_elegans/c_elegans_npc.tscn" id="5_ipxpp"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_5xqmr"]
+shader = ExtResource("2_nb0xf")
+shader_parameter/circle_size = 0.5
 
 [node name="PetriDish" type="Node2D"]
 script = ExtResource("1_ntewg")
 
-[node name="Background" type="TextureRect" parent="."]
+[node name="Background" type="ColorRect" parent="."]
+material = SubResource("ShaderMaterial_5xqmr")
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
@@ -22,18 +28,7 @@ offset_right = 6400.0
 offset_bottom = 6400.0
 grow_horizontal = 2
 grow_vertical = 2
-texture = ExtResource("2_8wge1")
-
-[node name="CanvasLayer" type="CanvasLayer" parent="."]
-
-[node name="TextureRect" type="TextureRect" parent="CanvasLayer"]
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-texture = ExtResource("3_1nqe1")
-expand_mode = 2
+color = Color(1, 0.976471, 0.890196, 1)
 
 [node name="BacteriaLawn" parent="." instance=ExtResource("4_n5a2v")]
 position = Vector2(-690, 745)
@@ -61,3 +56,17 @@ points = PackedVector2Array(-217, -249)
 
 [node name="C_Elegans4" parent="." instance=ExtResource("5_ipxpp")]
 points = PackedVector2Array(270, -257)
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("3_1nqe1")
+expand_mode = 2
+
+[node name="Minimap" parent="CanvasLayer" instance=ExtResource("4_7vcn6")]
+position = Vector2(110, 110)

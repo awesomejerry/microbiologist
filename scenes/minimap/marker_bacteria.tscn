@@ -1,0 +1,24 @@
+[gd_scene load_steps=3 format=3 uid="uid://bqy6xqsnfecgm"]
+
+[ext_resource type="Shader" path="res://scenes/minimap/minimap.gdshader" id="1_ovs0b"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_kxuv7"]
+shader = ExtResource("1_ovs0b")
+shader_parameter/circle_size = 0.5
+
+[node name="MarkerBacteria" type="Node2D"]
+
+[node name="ColorRect" type="ColorRect" parent="."]
+material = SubResource("ShaderMaterial_kxuv7")
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -2.0
+offset_top = -2.0
+offset_right = 2.0
+offset_bottom = 2.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0.561929, 0.45271, 1)
