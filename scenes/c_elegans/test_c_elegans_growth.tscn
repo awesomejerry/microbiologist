@@ -1,0 +1,13 @@
+[gd_scene load_steps=3 format=3 uid="uid://cfwihqx30e77j"]
+
+[ext_resource type="Script" path="res://scenes/c_elegans/test_c_elegans_growth.gd" id="1_lgx0s"]
+[ext_resource type="PackedScene" uid="uid://b5apd6c8ks5oe" path="res://scenes/c_elegans/c_elegans_main.tscn" id="1_wmnxk"]
+
+[node name="TestCElegansGrowth" type="Node2D"]
+script = ExtResource("1_lgx0s")
+
+[node name="C_Elegans_Main" parent="." instance=ExtResource("1_wmnxk")]
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 0.1
+autostart = true

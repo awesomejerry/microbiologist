@@ -1,7 +1,18 @@
 extends Line2D
 
-var speed = 200
-var distance_constraint = 5
+var speed = 200.0
+var distance_constraint = 5.0
+
+var original_width = 50.0
+var original_distance_constraint = 5.0
+
+var growth_phase = 0
+
+var eaten_bacteria = 0
+
+var growth_width_factor = [1.5, 2.5, 4, 6]
+var growth_step = [10, 20, 40, 80]
+var growth_length_factor = [1.3, 1.8, 2.5, 3.5]
 
 var is_main = false
 var nearest_bacteria = null
@@ -12,6 +23,8 @@ func constraint_distance(point: Vector2, anchor: Vector2, distance: float) -> Ve
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	original_width = width
+	original_distance_constraint = distance_constraint
 	add_to_group("CElegans")
 	for i in 50:
 		add_point(Vector2.ZERO)
@@ -81,6 +94,24 @@ func _on_area_2d_area_entered(area: Area2D) -> void:
 		area.get_parent().eaten()
 		grow()
 
+func _calculate_width():
+	var total_steps = growth_step.reduce(func(acc, val): return acc + val, 0)
+	var current_step = min(eaten_bacteria, total_steps)
+	var progress = float(current_step) / total_steps
+	var target_width = original_width * growth_width_factor[-1]
+	return lerp(original_width, target_width, progress)
+	
+
+func _calculate_distance_constraint():
+	var total_steps = growth_step.reduce(func(acc, val): return acc + val, 0)
+	var current_step = min(eaten_bacteria, total_steps)
+	var progress = float(current_step) / total_steps
+	var target_distance_constraint = original_distance_constraint * growth_length_factor[-1]
+	return lerp(original_distance_constraint, target_distance_constraint, progress)
+
 func grow() -> void:
-	width += 20
-	distance_constraint += 0.2
+	eaten_bacteria += 1
+	width = _calculate_width()
+	distance_constraint = _calculate_distance_constraint()
+	if (eaten_bacteria > growth_step[growth_phase]):
+		growth_phase = min(growth_phase + 1, growth_step.size() - 1)
