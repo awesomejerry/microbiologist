@@ -28,4 +28,4 @@ jobs:
         CHANNEL: html5
         ITCH_GAME: microbiologist
         ITCH_USER: awesomejerry
-        PACKAGE: builds/Web
+        PACKAGE: ${{ steps.export.outputs.archive_directory}}
