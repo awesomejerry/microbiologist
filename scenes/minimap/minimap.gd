@@ -31,7 +31,7 @@ func _on_Timer_timeout() -> void:
 		add_child(marker_bacteria)
 		marker_bacteria.position = bacteria.position / ratio
 
-	var celegans = get_tree().get_nodes_in_group("CElegans")
+	var celegans = get_tree().get_nodes_in_group("C_Elegans")
 	for marker_celegans in marker_celeganses:
 		marker_celegans.hide()
 		marker_celegans.queue_free()

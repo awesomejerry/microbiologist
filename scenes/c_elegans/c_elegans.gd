@@ -1,5 +1,7 @@
 extends Line2D
 
+class_name C_Elegans
+
 var speed = 200.0
 var distance_constraint = 5.0
 
@@ -25,7 +27,7 @@ func constraint_distance(point: Vector2, anchor: Vector2, distance: float) -> Ve
 func _ready() -> void:
 	original_width = width
 	original_distance_constraint = distance_constraint
-	add_to_group("CElegans")
+	add_to_group("C_Elegans")
 	for i in 50:
 		add_point(Vector2.ZERO)
 
@@ -59,7 +61,7 @@ func _process(delta: float) -> void:
 	var target_position = Vector2.ZERO
 	if (is_main):
 		target_position = get_local_mouse_position()
-	else:
+	elif has_node("SearchTimer"):
 		if (nearest_bacteria && is_instance_valid(nearest_bacteria)):
 			target_position = nearest_bacteria.global_position
 		else:
@@ -90,9 +92,14 @@ func _process(delta: float) -> void:
 
 
 func _on_area_2d_area_entered(area: Area2D) -> void:
-	if (area.get_parent() is Bacteria):
-		area.get_parent().eaten()
+	var collidedNode = area.get_parent()
+	if (collidedNode is Bacteria):
+		collidedNode.eaten()
 		grow()
+	elif (collidedNode is C_Elegans && collidedNode != self):
+		if (collidedNode.growth_phase < growth_phase):
+			print("Spawn new c.elegans with smaller growth_phase?")
+
 
 func _calculate_width():
 	var total_steps = growth_step.reduce(func(acc, val): return acc + val, 0)
