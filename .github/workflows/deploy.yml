@@ -31,4 +31,4 @@ jobs:
         CHANNEL: html5
         ITCH_GAME: microbiologist
         ITCH_USER: awesomejerry
-        PACKAGE: ${{ steps.export.outputs.build_directory }}
+        PACKAGE: ${{ steps.export.outputs.build_directory }}/Web
