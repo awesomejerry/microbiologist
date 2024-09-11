@@ -1,0 +1,33 @@
+name: Deploy Godot Web to itch.io
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v2
+
+    - name: Set up Godot environment
+      uses: firebelley/godot-export@v5.2.1
+      with:
+        godot-version: '4.3'
+
+    - name: Build Web version
+      run: |
+        mkdir -p export/web
+        godot --export "HTML5" export/web/index.html
+
+    - name: Deploy to itch.io
+      uses: manleydev/butler-publish-itchio-action@master
+      env:
+        BUTLER_CREDENTIALS: ${{ secrets.BUTLER_CREDENTIALS }}
+        CHANNEL: html5
+        ITCH_GAME: microbiologist
+        ITCH_USER: awesomejerry
+        PACKAGE: export/web
