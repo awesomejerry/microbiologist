@@ -13,18 +13,13 @@ jobs:
     - name: Checkout repository
       uses: actions/checkout@v2
 
-    - name: Set up Godot environment
+    - name: Set up Godot environment and export
       uses: firebelley/godot-export@v5.2.1
       with:
         godot_executable_download_url: https://downloads.tuxfamily.org/godotengine/4.3/Godot_v4.3-stable_linux.x86_64.zip
         godot_export_templates_download_url: https://downloads.tuxfamily.org/godotengine/4.3/Godot_v4.3-stable_export_templates.tpz
         relative_project_path: ./
         archive_output: true
-
-    - name: Build Web version
-      run: |
-        mkdir -p export/web
-        godot --export "HTML5" export/web/index.html
 
     - name: Deploy to itch.io
       uses: manleydev/butler-publish-itchio-action@master
@@ -33,4 +28,4 @@ jobs:
         CHANNEL: html5
         ITCH_GAME: microbiologist
         ITCH_USER: awesomejerry
-        PACKAGE: export/web
+        PACKAGE: builds/Web
