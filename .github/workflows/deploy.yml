@@ -22,7 +22,7 @@ jobs:
         relative_project_path: ./
 
     - name: Check archive files
-      run: ls -la ${{ steps.export.outputs.build_directory }}
+      run: ls -la ./builds
 
     - name: Deploy to itch.io
       uses: manleydev/butler-publish-itchio-action@master
@@ -31,4 +31,4 @@ jobs:
         CHANNEL: html5
         ITCH_GAME: microbiologist
         ITCH_USER: awesomejerry
-        PACKAGE: ${{ steps.export.outputs.build_directory }}/Web
+        PACKAGE: ./builds/Web
