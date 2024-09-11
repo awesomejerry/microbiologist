@@ -10,9 +10,8 @@ var marker_bacterias = []
 var marker_celegans_scene = preload("res://scenes/minimap/marker_celegans.tscn")
 var marker_celeganses = []
 
-# Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	var petri_dish = get_tree().get_root().get_node("PetriDish")
+	var petri_dish = get_tree().get_root().find_child("PetriDish", true, false)
 	if petri_dish:
 		background_size = petri_dish.find_child("Background").get_rect().size
 	minimap_size = find_child("ColorRect").get_rect().size
