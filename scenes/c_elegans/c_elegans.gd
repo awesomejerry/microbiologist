@@ -2,11 +2,12 @@ extends Line2D
 
 class_name C_Elegans
 
-var speed = 200.0
-var distance_constraint = 5.0
-
 var original_width = 50.0
+var original_speed = 200.0
 var original_distance_constraint = 5.0
+
+var speed = original_speed
+var distance_constraint = original_distance_constraint
 
 var growth_phase = 0
 
@@ -20,22 +21,31 @@ var is_main = false
 var nearest_bacteria = null
 var last_movement = Vector2.ZERO
 
+var can_be_hit = false
+
 func constraint_distance(point: Vector2, anchor: Vector2, distance: float) -> Vector2:
 	return ((point - anchor).normalized() * distance) + anchor
 
-# Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	original_width = width
-	original_distance_constraint = distance_constraint
 	add_to_group("C_Elegans")
 	for i in 50:
-		add_point(Vector2.ZERO)
+		add_point(points[0])
 
 	if has_node("Camera2D"):
 		is_main = true
+		# test eating
+		# original_speed = 300
+		# for i in 80:
+			# grow()
 
 	if has_node("SearchTimer"):
 		$SearchTimer.connect('timeout', _get_nearest_bacteria)
+	
+	$HitTimer.connect('timeout', _on_hit_timer_timeout)
+	$HitTimer.start()
+
+func _on_hit_timer_timeout():
+	can_be_hit = true
 
 func _search_for_nearest_bacteria():
 	if not $SearchTimer.is_stopped():
@@ -73,11 +83,6 @@ func _process(delta: float) -> void:
 			var movement = _get_movement(points[0], target_position, delta)
 			points[0] += movement
 			last_movement = movement
-
-			# points[0] = points[0].lerp(get_local_mouse_position(), 5 * delta)
-			# points[0] = get_local_mouse_position()
-
-	  # move head/collision
 			$Area2D.position = points[0]
 
 			if (is_main):
@@ -97,9 +102,8 @@ func _on_area_2d_area_entered(area: Area2D) -> void:
 		collidedNode.eaten()
 		grow()
 	elif (collidedNode is C_Elegans && collidedNode != self):
-		if (collidedNode.growth_phase < growth_phase):
-			print("Spawn new c.elegans with smaller growth_phase?")
-
+		if (collidedNode.growth_phase < growth_phase && collidedNode.can_be_hit):
+			collidedNode.be_hit()
 
 func _calculate_width():
 	var total_steps = growth_step.reduce(func(acc, val): return acc + val, 0)
@@ -120,5 +124,18 @@ func grow() -> void:
 	eaten_bacteria += 1
 	width = _calculate_width()
 	distance_constraint = _calculate_distance_constraint()
-	if (eaten_bacteria > growth_step[growth_phase]):
-		growth_phase = min(growth_phase + 1, growth_step.size() - 1)
+	growth_phase = growth_step.bsearch(eaten_bacteria)
+	speed = original_speed - growth_phase * 10
+
+func be_hit():
+	eaten_bacteria /= 2
+
+	var new_c_elegans = duplicate()
+	new_c_elegans.points = [points[0]]
+	get_tree().get_root().add_child(new_c_elegans)
+
+	grow()
+	new_c_elegans.grow()
+
+	can_be_hit = false
+	$HitTimer.start()
