@@ -20,6 +20,7 @@ jobs:
         godot_executable_download_url: https://downloads.tuxfamily.org/godotengine/4.3/Godot_v4.3-stable_linux.x86_64.zip
         godot_export_templates_download_url: https://downloads.tuxfamily.org/godotengine/4.3/Godot_v4.3-stable_export_templates.tpz
         relative_project_path: ./
+        relative_export_path: ./
 
     - name: Deploy to itch.io
       uses: manleydev/butler-publish-itchio-action@master
@@ -28,4 +29,4 @@ jobs:
         CHANNEL: html5
         ITCH_GAME: microbiologist
         ITCH_USER: awesomejerry
-        PACKAGE: ./builds/Web
+        PACKAGE: /home/runner/work/microbiologist/microbiologist/builds/Web
