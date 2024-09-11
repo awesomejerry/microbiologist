@@ -1,6 +1,6 @@
 [gd_scene load_steps=9 format=3 uid="uid://x4pm6us3an1h"]
 
-[ext_resource type="Script" path="res://scenes/Petri_dish/petri_dish.gd" id="1_ntewg"]
+[ext_resource type="Script" path="res://scenes/petri_dish/petri_dish.gd" id="1_ntewg"]
 [ext_resource type="Shader" path="res://scenes/minimap/minimap.gdshader" id="2_nb0xf"]
 [ext_resource type="Texture2D" uid="uid://bcqm5xb7v7wmy" path="res://assets/microscorpy-pixel.png" id="3_1nqe1"]
 [ext_resource type="PackedScene" uid="uid://b5apd6c8ks5oe" path="res://scenes/c_elegans/c_elegans_main.tscn" id="3_m0cm7"]
