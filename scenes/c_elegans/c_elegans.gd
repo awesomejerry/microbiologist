@@ -23,13 +23,22 @@ var last_movement = Vector2.ZERO
 
 var can_be_hit = false
 
+var area2Ds = []
+
 func constraint_distance(point: Vector2, anchor: Vector2, distance: float) -> Vector2:
 	return ((point - anchor).normalized() * distance) + anchor
 
 func _ready() -> void:
 	add_to_group("C_Elegans")
+	area2Ds.append($Area2D)
+
 	for i in 50:
 		add_point(points[0])
+		# var area_duplicate = $Area2D.duplicate()
+		# var child_duplicate = $Area2D/CollisionShape2D.duplicate()
+		# area_duplicate.add_child(child_duplicate)
+		# add_child(area_duplicate)
+		# area2Ds.append(area_duplicate)
 
 	if has_node("Camera2D"):
 		is_main = true
@@ -89,6 +98,7 @@ func _process(delta: float) -> void:
 				$Camera2D.position = $Area2D.position
 		else:
 			points[i] = constraint_distance(points[i], points[i - 1], distance_constraint)
+			# area2Ds[i].position = points[i]
 
 	if (is_main):
 		var ride_point_index = 10
@@ -102,8 +112,13 @@ func _on_area_2d_area_entered(area: Area2D) -> void:
 		collidedNode.eaten()
 		grow()
 	elif (collidedNode is C_Elegans && collidedNode != self):
-		if (collidedNode.growth_phase < growth_phase && collidedNode.can_be_hit):
-			collidedNode.be_hit()
+		pass
+		# if (collidedNode.can_be_hit && growth_phase < collidedNode.growth_phase):
+			# var stolen_bacteria = (collidedNode.eaten_bacteria - eaten_bacteria) / 2
+			# collidedNode.steal_bacteria_from(stolen_bacteria)
+			# steal_bacteria_to(stolen_bacteria)
+		# if (collidedNode.growth_phase < growth_phase && collidedNode.can_be_hit):
+		# 	collidedNode.be_hit()
 
 func _calculate_width():
 	var total_steps = growth_step.reduce(func(acc, val): return acc + val, 0)
@@ -139,3 +154,13 @@ func be_hit():
 
 	can_be_hit = false
 	$HitTimer.start()
+
+func steal_bacteria_from(bacteria_count: int) -> void:
+	eaten_bacteria -= bacteria_count
+	grow()
+	can_be_hit = false
+	$HitTimer.start()
+
+func steal_bacteria_to(bacteria_count: int) -> void:
+	eaten_bacteria += bacteria_count
+	grow()
