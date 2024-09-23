@@ -30,16 +30,16 @@ grow_vertical = 2
 color = Color(1, 0.976471, 0.890196, 1)
 
 [node name="BacteriaLawn" parent="." instance=ExtResource("4_n5a2v")]
-position = Vector2(-690, 745)
+position = Vector2(-2263, 2445)
 
 [node name="BacteriaLawn2" parent="." instance=ExtResource("4_n5a2v")]
-position = Vector2(-714, -762)
+position = Vector2(-2236, -1967)
 
 [node name="BacteriaLawn3" parent="." instance=ExtResource("4_n5a2v")]
-position = Vector2(731, -816)
+position = Vector2(2127, -1945)
 
 [node name="BacteriaLawn4" parent="." instance=ExtResource("4_n5a2v")]
-position = Vector2(715, 704)
+position = Vector2(2097, 2340)
 
 [node name="C_Elegans_Main" parent="." instance=ExtResource("3_m0cm7")]
 points = PackedVector2Array(0, 0)
