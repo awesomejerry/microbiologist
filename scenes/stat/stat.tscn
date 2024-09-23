@@ -16,12 +16,12 @@ layout_mode = 2
 clip_contents = false
 layout_mode = 2
 size_flags_horizontal = 3
-text = "Phase      "
+text = "Time           "
 fit_content = true
 scroll_active = false
 autowrap_mode = 0
 
-[node name="PhaseCount" type="RichTextLabel" parent="VBoxContainer/HBoxContainer"]
+[node name="Time" type="RichTextLabel" parent="VBoxContainer/HBoxContainer"]
 clip_contents = false
 layout_mode = 2
 text = "0"
@@ -36,12 +36,32 @@ layout_mode = 2
 clip_contents = false
 layout_mode = 2
 size_flags_horizontal = 3
-text = "Bacteria"
+text = "Bacteria        "
 fit_content = true
 scroll_active = false
 autowrap_mode = 0
 
 [node name="BacteriaCount" type="RichTextLabel" parent="VBoxContainer/HBoxContainer2"]
+clip_contents = false
+layout_mode = 2
+text = "0"
+fit_content = true
+scroll_active = false
+autowrap_mode = 0
+
+[node name="HBoxContainer3" type="HBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+
+[node name="RichTextLabel" type="RichTextLabel" parent="VBoxContainer/HBoxContainer3"]
+clip_contents = false
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Phase"
+fit_content = true
+scroll_active = false
+autowrap_mode = 0
+
+[node name="PhaseCount" type="RichTextLabel" parent="VBoxContainer/HBoxContainer3"]
 clip_contents = false
 layout_mode = 2
 text = "0"
